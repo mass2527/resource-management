@@ -30,6 +30,7 @@ const GlobalStyle = () => {
         html,
         body {
           height: 100%;
+          font-family: 'Roboto', sans-serif;
         }
         img,
         picture,
