@@ -1,0 +1,7 @@
+{
+  "create theme": {
+    "scope": "css",
+    "prefix": "thm",
+    "body": ["${({theme}) => theme$1}"]
+  }
+}
