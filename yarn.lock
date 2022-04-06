@@ -8037,6 +8037,11 @@ type-is@~1.6.18:
     media-typer "0.3.0"
     mime-types "~2.1.24"
 
+typed-design-system@^0.0.50:
+  version "0.0.50"
+  resolved "https://registry.yarnpkg.com/typed-design-system/-/typed-design-system-0.0.50.tgz#62c2821151eddc1c075c42fe96e3ac3ea282ae09"
+  integrity sha512-I2TBFgcK/v6yqvw+0dJpAUL4YpKej0ELUsWGS4L4VOPXgs3qalKV9SGfnWPyw7v6T/Ej4Z0LxUIhwcceABvMyg==
+
 typedarray-to-buffer@^3.1.5:
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/typedarray-to-buffer/-/typedarray-to-buffer-3.1.5.tgz#a97ee7a9ff42691b9f783ff1bc5112fe3fca9080"
