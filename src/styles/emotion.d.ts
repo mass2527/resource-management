@@ -1,6 +1,6 @@
 import {theme} from './theme';
 
-type MyTheme = typeof theme;
+export type MyTheme = typeof theme;
 
 import '@emotion/react';
 

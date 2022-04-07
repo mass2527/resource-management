@@ -1,9 +1,10 @@
 import {Global, css} from '@emotion/react';
+import {MyTheme} from './emotion';
 
 const GlobalStyle = () => {
   return (
     <Global
-      styles={css`
+      styles={(theme: MyTheme) => css`
         /* https://velog.io/@teo/2022-CSS-Reset-%EB%8B%A4%EC%8B%9C-%EC%8D%A8%EB%B3%B4%EA%B8%B0 */
         * {
           margin: 0;
@@ -31,6 +32,7 @@ const GlobalStyle = () => {
         body {
           height: 100%;
           font-family: 'Roboto', sans-serif;
+          font-size: ${theme.fontSizes.medium};
         }
         img,
         picture,
