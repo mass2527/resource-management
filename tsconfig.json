@@ -17,7 +17,8 @@
     "jsx": "react-jsx",
     "incremental": true,
     "baseUrl": "./src",
-    "jsxImportSource": "@emotion/react"
+    "jsxImportSource": "@emotion/react",
+    "downlevelIteration": true
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
