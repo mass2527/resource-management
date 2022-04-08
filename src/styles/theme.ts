@@ -2,6 +2,7 @@ const spaces = {
   small: '8px',
   medium: '10px',
   large: '12px',
+  'x-large': '16px',
 };
 
 const radiuses = {
@@ -22,6 +23,10 @@ const fontSizes = {
   large: '16px',
 };
 
+const lineHeights = {
+  medium: '16px',
+};
+
 const colors = {
   gray: {
     light: '#F7F7F7',
@@ -37,5 +42,6 @@ export const theme = {
   radiuses,
   fontWeights,
   fontSizes,
+  lineHeights,
   colors,
 };
