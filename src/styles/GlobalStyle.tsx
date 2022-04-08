@@ -23,7 +23,6 @@ const GlobalStyle = () => {
           -webkit-text-size-adjust: 100%;
           text-size-adjust: 100%;
           cursor: default;
-          line-height: 1.5;
           overflow-wrap: break-word;
           -moz-tab-size: 4;
           tab-size: 4;
@@ -33,6 +32,7 @@ const GlobalStyle = () => {
           height: 100%;
           font-family: 'Roboto', sans-serif;
           font-size: ${theme.fontSizes.medium};
+          line-height: ${theme.lineHeights.medium};
         }
         img,
         picture,
@@ -53,6 +53,9 @@ const GlobalStyle = () => {
         table {
           border-collapse: collapse;
           border-spacing: 0;
+        }
+        ul {
+          list-style: none;
         }
       `}
     />
