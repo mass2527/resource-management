@@ -1,26 +1,22 @@
+import {css} from '@emotion/react';
 import styled from '@emotion/styled';
-import {Dispatch, SetStateAction, useEffect, useRef} from 'react';
+import {useEffect, useRef} from 'react';
 import {useState} from 'react';
+import {useRecoilState} from 'recoil';
+import {resourceListState, selectedResourceIdState} from 'states/resource';
+import {ellipsis} from 'styles/ellipsis';
+
 import {flexColumn, flexRow} from 'styles/flex';
 
-export interface Resource {
-  type: 'image' | 'url';
-  name: string;
-  source: string;
-}
-
-interface ResourceListItemProps {
-  resource: Resource;
-  setResourceList: Dispatch<SetStateAction<Resource[]>>;
-}
-
-const ResourceListItem = ({
-  resource,
-  setResourceList,
-}: ResourceListItemProps) => {
+const ResourceListItem = ({resourceId}: {resourceId: string}) => {
   const [isEditMode, setIsEditMode] = useState(false);
+  const [resourceList, setResourceList] = useRecoilState(resourceListState);
+  const resource = resourceList.find((resource) => resource.id === resourceId)!;
   const [resourceName, setResourceName] = useState(resource.name);
   const inputRef = useRef<HTMLInputElement>(null);
+  const [selectedResourceId, setSelectedResourceId] = useRecoilState(
+    selectedResourceIdState
+  );
 
   useEffect(() => {
     if (isEditMode) {
@@ -31,7 +27,7 @@ const ResourceListItem = ({
     if (resourceName) {
       setResourceList((prevResourceList) =>
         prevResourceList.map((item) => {
-          if (item.source === resource.source) {
+          if (item.id === resource.id) {
             return {...item, name: resourceName};
           }
           return item;
@@ -45,14 +41,24 @@ const ResourceListItem = ({
 
   return (
     <Wrapper
-      onClick={() => {
-        console.log('working');
-      }}>
+      onClick={() =>
+        setSelectedResourceId(
+          selectedResourceId === resource.id ? null : resource.id
+        )
+      }>
       <Form
         onSubmit={(e) => {
           e.preventDefault();
           setIsEditMode(false);
-        }}>
+        }}
+        css={(theme) =>
+          css`
+            border: 1px solid
+              ${resource.id === selectedResourceId
+                ? theme.colors.primary
+                : 'transparent'};
+          `
+        }>
         {isEditMode ? (
           <input
             ref={inputRef}
@@ -107,9 +113,7 @@ const Form = styled.form`
   margin-bottom: ${({theme}) => theme.spaces.medium};
 
   span {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    ${ellipsis}
   }
 
   div {

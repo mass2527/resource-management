@@ -3,6 +3,7 @@ import {CSSProperties, ReactNode} from 'react';
 
 interface FlexProps {
   as?: React.ElementType;
+  flex?: number;
   className?: string;
   direction?: CSSProperties['flexDirection'];
   spacing?: number;
@@ -13,6 +14,7 @@ interface FlexProps {
 
 const Flex = ({
   as,
+  flex,
   className,
   direction = 'row',
   spacing,
@@ -23,6 +25,7 @@ const Flex = ({
   return (
     <Wrapper
       as={as}
+      flex={flex}
       className={className}
       spacing={spacing}
       direction={direction}
@@ -35,6 +38,7 @@ const Flex = ({
 
 const Wrapper = styled.div<FlexProps>`
   display: flex;
+  flex: ${({flex}) => flex};
   flex-direction: ${({direction}) => direction};
   gap: ${({spacing}) => spacing && `${spacing * 5}px`};
   justify-content: ${({justifyContent}) => justifyContent};

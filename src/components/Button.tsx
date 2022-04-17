@@ -11,6 +11,7 @@ interface ButtonProps {
     event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
   ) => void;
   children: ReactNode;
+  className?: string;
 }
 
 const Button = ({
@@ -18,9 +19,10 @@ const Button = ({
   size = 'medium',
   onClick,
   children,
+  className,
 }: ButtonProps) => {
   return (
-    <Wrapper type={type} size={size} onClick={onClick}>
+    <Wrapper type={type} size={size} onClick={onClick} className={className}>
       {children}
     </Wrapper>
   );

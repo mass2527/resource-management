@@ -35,6 +35,7 @@ const colors = {
   },
   white: '#fff',
   black: '#000',
+  primary: '#EB367F',
 };
 
 const constants = {

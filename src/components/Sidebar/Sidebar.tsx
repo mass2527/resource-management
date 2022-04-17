@@ -1,14 +1,18 @@
 import {flexColumn, flexRow} from 'styles/flex';
 import Button from 'components/Button';
 import styled from '@emotion/styled';
-import {ChangeEvent, useRef, useState} from 'react';
+import {ChangeEvent, useRef} from 'react';
 import {css} from '@emotion/react';
-import ResourceListItem, {Resource} from 'components/ResourceListItem';
-import {INITIAL_RESOURCE_LIST, URL_REGEX} from './constants';
+import ResourceListItem from 'components/ResourceListItem';
+import {URL_REGEX} from './constants';
 import {convertToEmbeddedURL, isValidFileType} from './utils';
+import {nanoid} from 'nanoid';
+import {useRecoilState} from 'recoil';
+import {resourceListState} from 'states/resource';
+import {Resource} from 'states/resource/constant';
 
 const Sidebar = () => {
-  const [resourceList, setResourceList] = useState(INITIAL_RESOURCE_LIST);
+  const [resourceList, setResourceList] = useRecoilState(resourceListState);
   const inputFileRef = useRef<HTMLInputElement>(null);
 
   const handleURLAddClick = async () => {
@@ -27,6 +31,7 @@ const Sidebar = () => {
 
     const convertedURL = convertToEmbeddedURL(url);
     const newResource: Resource = {
+      id: nanoid(),
       type: 'image',
       name: convertedURL,
       source: convertedURL,
@@ -51,6 +56,7 @@ const Sidebar = () => {
       }
 
       const newResource: Resource = {
+        id: nanoid(),
         type: 'image',
         name: file.name,
         source: objectURL,
@@ -86,11 +92,7 @@ const Sidebar = () => {
       <ResourceListWrapper>
         <ul>
           {resourceList.map((resource) => (
-            <ResourceListItem
-              key={resource.source}
-              resource={resource}
-              setResourceList={setResourceList}
-            />
+            <ResourceListItem key={resource.source} resourceId={resource.id} />
           ))}
         </ul>
       </ResourceListWrapper>
