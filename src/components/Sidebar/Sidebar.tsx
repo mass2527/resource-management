@@ -4,44 +4,8 @@ import styled from '@emotion/styled';
 import {ChangeEvent, useRef, useState} from 'react';
 import {css} from '@emotion/react';
 import ResourceListItem, {Resource} from 'components/ResourceListItem';
-
-const URL_REGEX =
-  /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
-
-const YOUTUBE_REGEX =
-  /^(?:https?:\/\/)(?:www\.)?(?:(?:youtube.com\/(?:(?:watch\?v=)|(?:embed\/))([a-zA-Z0-9-]{11}))|(?:youtu.be\/([a-zA-Z0-9-]{11})))/;
-
-const convertToEmbeddedURL = (url: string): string => {
-  const match = url.match(YOUTUBE_REGEX);
-  const videoId = match ? match[1] || match[2] : undefined;
-  if (videoId) {
-    return `https://www.youtube.com/embed/${videoId}`;
-  }
-  return url;
-};
-
-const VALID_FILE_TYPES = ['image/png', 'image/jpeg'];
-
-const isValidFileType = (file: File) => VALID_FILE_TYPES.includes(file.type);
-
-const INITIAL_RESOURCE_LIST: Resource[] = [
-  {
-    type: 'url',
-    name: 'https://medium.com/@tapajyoti-bose/beautify-your-github-profile-like-a-pro-2f7922895953',
-    source:
-      'https://medium.com/@tapajyoti-bose/beautify-your-github-profile-like-a-pro-2f7922895953',
-  },
-  {
-    type: 'url',
-    name: 'https://brunch.co.kr/@carynful/19',
-    source: 'https://brunch.co.kr/@carynful/19',
-  },
-  {
-    type: 'url',
-    name: 'https://typed.blog/how-to-write-a-better-research-paper-faster/',
-    source: 'https://typed.blog/how-to-write-a-better-research-paper-faster/',
-  },
-];
+import {INITIAL_RESOURCE_LIST, URL_REGEX} from './constants';
+import {convertToEmbeddedURL, isValidFileType} from './utils';
 
 const Sidebar = () => {
   const [resourceList, setResourceList] = useState(INITIAL_RESOURCE_LIST);
