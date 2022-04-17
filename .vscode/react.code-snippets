@@ -1,0 +1,7 @@
+{
+  "export default component from index.ts": {
+    "scope": "typescript",
+    "prefix": "ed",
+    "body": ["export {default} from './${TM_DIRECTORY/.*\\/(.*)$/$1/g}';", ""]
+  }
+}
