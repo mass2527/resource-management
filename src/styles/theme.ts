@@ -37,6 +37,10 @@ const colors = {
   black: '#000',
 };
 
+const constants = {
+  headerHeight: '50px',
+};
+
 export const theme = {
   spaces,
   radiuses,
@@ -44,4 +48,5 @@ export const theme = {
   fontSizes,
   lineHeights,
   colors,
+  constants,
 };
