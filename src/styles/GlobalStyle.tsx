@@ -29,10 +29,10 @@ const GlobalStyle = () => {
         }
         html,
         body {
-          height: 100%;
           font-family: 'Roboto', sans-serif;
           font-size: ${theme.fontSizes.medium};
           line-height: ${theme.lineHeights.medium};
+          overflow: hidden;
         }
         img,
         picture,
